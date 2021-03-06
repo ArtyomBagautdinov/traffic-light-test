@@ -4,7 +4,7 @@
         <input v-model="login" @change="useFilter" class="styled-input" type="text" placeholder="Логин">
         <input v-model="status" @change="useFilter" class="styled-input" type="text" placeholder="Статус">
         <input v-model="ordersMin" @change="useFilter" type="number" min="0" placeholder="Минимум"/>
-        <input v-model="ordersMax" @change="useFilter" type="number" v-bind:min="ordersMin" placeholder="Максимум"/>
+        <input v-model="ordersMax" @change="useFilter" type="number" min="0" placeholder="Максимум"/>
     </div>
 </template>
 
@@ -31,10 +31,13 @@
                     ordersMax: this.ordersMax
                 })
             }
+        },
+        mounted(){
+            const { login, status, ordersMin, ordersMax} = this.$route.query
+            this.login = login || '';
+            this.status = status || '';
+            this.ordersMin = ordersMin || 0;
+            this.ordersMax = ordersMax || 10000000;
         }
     }
 </script>
-
-<style>
-
-</style>

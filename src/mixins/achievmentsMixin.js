@@ -3,7 +3,8 @@ const { mapState,mapActions,mapGetters } = createNamespacedHelpers('achievments'
 
 const computed = {
   ...mapState({
-    $_achievmentsData : 'achievmentsData'
+    $_achievmentsData : 'achievmentsData',
+    $_filterData : 'filter'
   }),
   ...mapGetters({
     $_filteredAchievments: 'filteredAchievments'
