@@ -11,18 +11,18 @@ const state = {
             status: 'Ценитель красоты'
         },
         {
+            id : 64,
+            position: 6,
+            login: 'cat@mail.ru',
+            confirmedOrders: 1,
+            status: 'Ценитель красоты'
+        },
+        {
             id : 2,
             position: 2,
             login: 'lenin@gmail.com',
             confirmedOrders: 120,
             status: 'Поставщик аксессуаров'
-        },
-        {
-            id : 4,
-            position: 3,
-            login: 'mask@gmail.com',
-            confirmedOrders: 98,
-            status: 'Конкурент минздрава'
         },
         {
             id : 16,
@@ -32,18 +32,18 @@ const state = {
             status: 'рыбак'
         },
         {
+            id : 4,
+            position: 3,
+            login: 'mask@gmail.com',
+            confirmedOrders: 98,
+            status: 'Конкурент минздрава'
+        },
+        {
             id : 32,
             position: 5,
             login: 'nightmare@mail.ru',
             confirmedOrders: 34,
             status: 'охотник'
-        },
-        {
-            id : 64,
-            position: 6,
-            login: 'cat@mail.ru',
-            confirmedOrders: 1,
-            status: 'Ценитель красоты'
         }
     ],
     filter: {
@@ -53,10 +53,10 @@ const state = {
         status: ''
     },
     sorts : {
-        sortByPosition: sortState.NOSORT,
+        sortByPosition: sortState.FORWARD,
         sortByStatus : sortState.FORWARD,
-        sortByLogin : sortState.NOSORT,
-        sortByOrders: sortState.NOSORT
+        sortByLogin : sortState.FORWARD,
+        sortByOrders: sortState.FORWARD
     }
 }
   
@@ -68,6 +68,13 @@ const mutations = {
             ordersMax : data.ordersMax,
             status : data.status
         }
+
+        // state.sorts = {
+        //     sortByPosition: data.sortByPosition,
+        //     sortByStatus : data.sortByStatus,
+        //     sortByLogin : data.sortByLogin,
+        //     sortByOrders: data.sortByOrders
+        // }
     }
 }
   
@@ -82,14 +89,14 @@ const helpers = {
     },
     sortBy(arr,mode,field){
         if(mode === sortState.FORWARD){
-            arr.sort((x,y)=> {
+            return arr.sort((x,y)=> {
                 if(x[field] > y[field]) return 1;
                 if(x[field] < y[field]) return -1;
                 return 0;
             })
         }
         if(mode === sortState.REVERSED){
-            arr.sort((x,y)=> {
+            return arr.sort((x,y)=> {
                 if(x[field] < y[field]) return 1;
                 if(x[field] > y[field]) return -1;
                 return 0;
@@ -103,13 +110,29 @@ const helpers = {
 const getters = {
     filteredAchievments: (state) => {
 
-      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByPosition,'position');
+      state.achievmentsData = helpers.sortBy(
+          state.achievmentsData,
+          state.sorts.sortByPosition,
+          'position'
+        );
 
-      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByStatus,'status');
+      state.achievmentsData = helpers.sortBy(
+          state.achievmentsData,
+          state.sorts.sortByStatus,
+          'status'
+          );
 
-      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByLogin,'login');
+      state.achievmentsData = helpers.sortBy(
+          state.achievmentsData,
+          state.sorts.sortByLogin,
+          'login'
+          );
 
-      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByOrders,'confirmedOrders');
+      state.achievmentsData = helpers.sortBy(
+          state.achievmentsData,
+          state.sorts.sortByOrders,
+          'confirmedOrders'
+          );
 
       return state.achievmentsData.filter(
             helpers.searchAchievments(

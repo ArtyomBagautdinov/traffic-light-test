@@ -5,6 +5,12 @@
         <input v-model="status" @change="useFilter" class="styled-input" type="text" placeholder="Статус">
         <input v-model="ordersMin" @change="useFilter" type="number" min="0" placeholder="Минимум"/>
         <input v-model="ordersMax" @change="useFilter" type="number" min="0" placeholder="Максимум"/>
+         <!-- <select>
+            <option disabled value="">Сортировка по статусу</option>
+            <option>А</option>
+            <option>Б</option>
+            <option>В</option>
+        </select> -->
     </div>
 </template>
 
