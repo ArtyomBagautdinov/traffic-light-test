@@ -1,16 +1,38 @@
-.styled-table {
+.app-table {
     border-collapse: collapse;
     font-size: 0.8em;
     font-family: sans-serif;
-    min-width: 250px;
+    width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.378);
 
     thead {
       tr {
+        cursor: pointer;
         background-color: #6000af;
         color: #ffffff;
         text-align: left;
+        th {
+          transition: .2s;
+          img {
+            width: 13px;
+            height: 13px;
+          }
+        }
+
+        &:first-of-type{
+          background-color: #ffffff;
+          // border-top: 2px solid #000000;
+
+          th {
+
+            &:hover {
+              background-color: #f3f3f3;
+            }
+          }
+        }
       }
+
+     
     }
 
     th {
@@ -49,7 +71,7 @@
 
 
   @media screen and (max-width: 450px) {
-     .styled-table {
+     .app-table {
          font-size: 0.6em;
          th {
              width: 30px;

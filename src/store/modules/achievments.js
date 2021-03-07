@@ -53,10 +53,10 @@ const state = {
         status: ''
     },
     sorts : {
-        sortByPosition: sortState.FORWARD,
-        sortByStatus : sortState.FORWARD,
-        sortByLogin : sortState.FORWARD,
-        sortByOrders: sortState.FORWARD
+        sortByPosition: sortState.NOSORT,
+        sortByStatus : sortState.NOSORT,
+        sortByLogin : sortState.NOSORT,
+        sortByOrders: sortState.NOSORT
     }
 }
   
@@ -68,13 +68,12 @@ const mutations = {
             ordersMax : data.ordersMax,
             status : data.status
         }
-
-        // state.sorts = {
-        //     sortByPosition: data.sortByPosition,
-        //     sortByStatus : data.sortByStatus,
-        //     sortByLogin : data.sortByLogin,
-        //     sortByOrders: data.sortByOrders
-        // }
+    },
+    SORT: (state,data) => {
+        state.sorts[data.field] = data.mode;
+        for(let key in state.sorts) {
+            if(key != data.field) state.sorts[key] = sortState.NOSORT;
+        }
     }
 }
   
@@ -148,7 +147,10 @@ const getters = {
 const actions = {
     filter({commit}, data){
         commit('FILTER', data);
-    }
+    },
+    sort({commit},data){
+        commit('SORT',data);
+    } 
 }
   
 export default {

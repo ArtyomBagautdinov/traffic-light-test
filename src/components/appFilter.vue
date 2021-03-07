@@ -1,21 +1,16 @@
 <template>
-    <div class="filters">
+    <div class="app-card">
         <h2>Фильтры</h2>
-        <input v-model="login" @change="useFilter" class="styled-input" type="text" placeholder="Логин">
-        <input v-model="status" @change="useFilter" class="styled-input" type="text" placeholder="Статус">
+        <input v-model="login" @change="useFilter" class="app-input" type="text" placeholder="Логин">
+        <input v-model="status" @change="useFilter" class="app-input" type="text" placeholder="Статус">
         <input v-model="ordersMin" @change="useFilter" type="number" min="0" placeholder="Минимум"/>
         <input v-model="ordersMax" @change="useFilter" type="number" min="0" placeholder="Максимум"/>
-         <!-- <select>
-            <option disabled value="">Сортировка по статусу</option>
-            <option>А</option>
-            <option>Б</option>
-            <option>В</option>
-        </select> -->
     </div>
 </template>
 
 <script>
     import achievmentsMixin from '@/mixins/achievmentsMixin'
+    
     export default {
         mixins : [
             achievmentsMixin
