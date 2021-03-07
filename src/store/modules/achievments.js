@@ -1,3 +1,6 @@
+import sortState from '@/enums/sortState'
+
+
 const state = {
     achievmentsData : [
         {
@@ -48,6 +51,12 @@ const state = {
         ordersMin: 0,
         ordersMax: 1000000,
         status: ''
+    },
+    sorts : {
+        sortByPosition: sortState.NOSORT,
+        sortByStatus : sortState.FORWARD,
+        sortByLogin : sortState.NOSORT,
+        sortByOrders: sortState.NOSORT
     }
 }
   
@@ -70,11 +79,38 @@ const helpers = {
         currentObject.confirmedOrders <= ordersMax && 
         currentObject.confirmedOrders >= ordersMin;
       }
+    },
+    sortBy(arr,mode,field){
+        if(mode === sortState.FORWARD){
+            arr.sort((x,y)=> {
+                if(x[field] > y[field]) return 1;
+                if(x[field] < y[field]) return -1;
+                return 0;
+            })
+        }
+        if(mode === sortState.REVERSED){
+            arr.sort((x,y)=> {
+                if(x[field] < y[field]) return 1;
+                if(x[field] > y[field]) return -1;
+                return 0;
+            })
+        }
+        return arr;
     }
+
 }
   
 const getters = {
     filteredAchievments: (state) => {
+
+      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByPosition,'position');
+
+      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByStatus,'status');
+
+      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByLogin,'login');
+
+      state.achievmentsData = helpers.sortBy(state.achievmentsData,state.sorts.sortByOrders,'confirmedOrders');
+
       return state.achievmentsData.filter(
             helpers.searchAchievments(
                 state.filter.login,

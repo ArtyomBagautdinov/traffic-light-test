@@ -1,5 +1,5 @@
 <template>
-  <div class="filters">
+    <div class="filters">
         <h2>Фильтры</h2>
         <input v-model="login" @change="useFilter" class="styled-input" type="text" placeholder="Логин">
         <input v-model="status" @change="useFilter" class="styled-input" type="text" placeholder="Статус">

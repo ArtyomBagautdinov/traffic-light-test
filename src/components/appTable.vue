@@ -9,6 +9,9 @@
             </tr>
         </thead>
         <tbody>
+            <tr v-if="$_filteredAchievments.length===0">
+                <td v-for="i in 4" :key="i">нет совпадений</td>
+            </tr>
             <tr v-for="item in $_filteredAchievments" :key="item.id">
                 <td>{{item.position}}</td>
                 <td>{{item.login}}</td>
