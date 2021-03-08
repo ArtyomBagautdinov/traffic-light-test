@@ -2,20 +2,20 @@
   <div class="main">
     <app-table/>
     <app-filter/>
-    <p>{{buildedLink}}</p>
+    <app-builded-link/>
   </div>
 </template>
 
 <script>
     import achievmentsMixin from '@/mixins/achievmentsMixin'
-    import appFilter from '../components/appFilter.vue'
-    import appTable from '../components/appTable.vue'
-    
+    import appFilter from '@/components/appFilter.vue'
+    import appTable from '@/components/appTable.vue'
+    import appBuildedLink from '@/components/appBuildedLink.vue'
     export default {
-    name: 'Home',
     components : {
         appFilter,
-        appTable
+        appTable,
+        appBuildedLink
     },
     mixins : [
         achievmentsMixin
@@ -31,8 +31,6 @@
             sortByLogin,
             sortByOrders
         } = this.$route.query;
-
-        console.log(login,status,ordersMin,ordersMax,sortByPosition,sortByStatus,sortByLogin,sortByOrders);
 
         this.$_filterAchievments({
                     login : login || '',
@@ -61,7 +59,6 @@
                 mode : parseInt(sortByLogin)
             })
         }
-        
 
         if(sortByOrders !== undefined){ 
             this.$_sortAchievments({

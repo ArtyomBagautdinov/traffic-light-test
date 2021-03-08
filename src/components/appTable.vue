@@ -39,7 +39,6 @@
 <script>
     import achievmentsMixin from '@/mixins/achievmentsMixin'
     import sortState from '@/enums/sortState';
-
     export default {
         mixins : [
             achievmentsMixin
