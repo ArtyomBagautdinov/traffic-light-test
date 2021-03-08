@@ -21,51 +21,56 @@
         achievmentsMixin
     ],
     mounted(){
-        const { 
-            login, 
-            status, 
-            ordersMin, 
-            ordersMax, 
-            sortByPosition, 
-            sortByStatus, 
-            sortByLogin,
-            sortByOrders
-        } = this.$route.query;
+       this.initLink();
+    },
+    methods: {
+        initLink(){
+             const { 
+                login, 
+                status, 
+                ordersMin, 
+                ordersMax, 
+                sortByPosition, 
+                sortByStatus, 
+                sortByLogin,
+                sortByOrders
+            } = this.$route.query;
 
-        this.$_filterAchievments({
-                    login : login || '',
-                    status: status || '',
-                    ordersMin : ordersMin || 0,
-                    ordersMax: ordersMax || 10000
-                });
+            this.$_filterAchievments({
+                        login : login || '',
+                        status: status || '',
+                        ordersMin : ordersMin || 0,
+                        ordersMax: ordersMax || 10000
+                    });
 
-        if(sortByPosition !== undefined){
-            this.$_sortAchievments({
-                field : 'sortByPosition',
-                mode : parseInt(sortByPosition)
-            })
+            if(sortByPosition !== undefined){
+                this.$_sortAchievments({
+                    field : 'sortByPosition',
+                    mode : parseInt(sortByPosition)
+                })
+            }
+
+            if(sortByStatus !== undefined){
+                this.$_sortAchievments({
+                    field : 'sortByStatus',
+                    mode : parseInt(sortByStatus)
+                })
+            }
+            
+            if(sortByLogin !== undefined){
+                this.$_sortAchievments({
+                    field : 'sortByLogin',
+                    mode : parseInt(sortByLogin)
+                })
+            }
+
+            if(sortByOrders !== undefined){ 
+                this.$_sortAchievments({
+                    field : 'sortByOrders',
+                    mode : parseInt(sortByOrders)
+                })
+            } 
         }
-
-        if(sortByStatus !== undefined){
-            this.$_sortAchievments({
-                field : 'sortByStatus',
-                mode : parseInt(sortByStatus)
-            })
-        }
-        
-        if(sortByLogin !== undefined){
-            this.$_sortAchievments({
-                field : 'sortByLogin',
-                mode : parseInt(sortByLogin)
-            })
-        }
-
-        if(sortByOrders !== undefined){ 
-            this.$_sortAchievments({
-                field : 'sortByOrders',
-                mode : parseInt(sortByOrders)
-            })
-        } 
     }
 }
 </script>
