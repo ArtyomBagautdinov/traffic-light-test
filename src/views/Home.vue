@@ -1,8 +1,7 @@
 <template>
   <div class="main">
-    <app-table/>
     <app-filter/>
-    <app-builded-link/>
+    <app-table/>
   </div>
 </template>
 
@@ -10,12 +9,10 @@
     import achievmentsMixin from '@/mixins/achievmentsMixin'
     import appFilter from '@/components/appFilter.vue'
     import appTable from '@/components/appTable.vue'
-    import appBuildedLink from '@/components/appBuildedLink.vue'
     export default {
     components : {
         appFilter,
-        appTable,
-        appBuildedLink
+        appTable
     },
     mixins : [
         achievmentsMixin
@@ -39,8 +36,8 @@
             this.$_filterAchievments({
                         login : login || '',
                         status: status || '',
-                        ordersMin : ordersMin || 0,
-                        ordersMax: ordersMax || 10000
+                        ordersMin : ordersMin || null,
+                        ordersMax: ordersMax || null
                     });
 
             if(sortByPosition !== undefined){

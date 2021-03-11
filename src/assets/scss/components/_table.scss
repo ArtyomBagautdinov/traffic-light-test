@@ -3,8 +3,6 @@
     font-size: 0.8em;
     font-family: sans-serif;
     width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.378);
-
     thead {
       tr {
         cursor: pointer;
@@ -21,7 +19,7 @@
 
         &:first-of-type{
           background-color: #ffffff;
-          // border-top: 2px solid #000000;
+          border-top: 2px solid #6f00ca;
 
           th {
 
