@@ -197,7 +197,6 @@ const getters = {
     
       let newAchievments = JSON.parse(JSON.stringify(state.achievmentsData));
 
-      console.log(newAchievments);
       newAchievments = helpers.sortBy(
           newAchievments,
           state.sorts.sortByPosition,
