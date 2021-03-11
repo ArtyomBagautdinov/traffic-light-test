@@ -197,6 +197,7 @@ const getters = {
     
       let newAchievments = JSON.parse(JSON.stringify(state.achievmentsData));
 
+      console.log(newAchievments);
       newAchievments = helpers.sortBy(
           newAchievments,
           state.sorts.sortByPosition,
@@ -216,7 +217,7 @@ const getters = {
           );
 
       newAchievments = helpers.sortBy(
-          state.achievmentsData,
+          newAchievments,
           state.sorts.sortByOrders,
           'confirmedOrders'
           );
@@ -229,6 +230,7 @@ const getters = {
                 state.filter.ordersMax
                 )
             )
+
     }
 }
 
