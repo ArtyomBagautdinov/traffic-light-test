@@ -1,6 +1,5 @@
 import {createNamespacedHelpers} from 'vuex'
 
-// import sortState from '@/enums/sortState'
 const { mapState,mapActions,mapGetters } = createNamespacedHelpers('achievments');
 
 const computed = {
